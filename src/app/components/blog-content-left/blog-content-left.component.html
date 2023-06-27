@@ -1,0 +1,107 @@
+<div class="row">
+    <div class="col-12">
+        <div class="d-flex justify-content-between headersFilter" (click)="toggleCategories()">
+            <h5 class="txt">Categories</h5>
+            <span class="icon" [ngClass]="iconCategories"></span>
+        </div>
+        <hr class="m-0">
+        <div class="contentCategories mt-3" *ngIf="showCategories">
+            <div class="categoryBox my-1">
+                <input class="checkboxFilter" type="checkbox" name="Digital Transformation"
+                    value="Digital Transformation" (change)="onCheckboxChange('digitalTransformation', $event)">
+                <span>Digital Transformation ({{categoryCounts.digitalTransformation}})</span>
+            </div>
+            <div class="categoryBox my-1">
+                <input class="checkboxFilter" type="checkbox" name="Financial Services" value="Financial Services"
+                    (change)="onCheckboxChange('financialServices', $event)">
+                <span>Financial Services ({{categoryCounts.financialServices}})</span>
+            </div>
+            <div class="categoryBox my-1">
+                <input class="checkboxFilter" type="checkbox" name="Health" value="Health"
+                    (change)="onCheckboxChange('health', $event)">
+                <span>Health ({{categoryCounts.health}})</span>
+            </div>
+            <div class="categoryBox my-1">
+                <input class="checkboxFilter" type="checkbox" name="Leadership" value="Leadership"
+                    (change)="onCheckboxChange('leadership', $event)">
+                <span>Leadership ({{categoryCounts.leadership}})</span>
+            </div>
+            <div class="categoryBox my-1">
+                <input class="checkboxFilter" type="checkbox" name="Manufacturing" value="Manufacturing"
+                    (change)="onCheckboxChange('manufacturing', $event)">
+                <span>Manufacturing ({{categoryCounts.manufacturing}})</span>
+            </div>
+            <div class="categoryBox my-1">
+                <input class="checkboxFilter" type="checkbox" name="Telco & Media" value="Telco & Media"
+                    (change)="onCheckboxChange('telcoYMedia', $event)">
+                <span>Telco & Media ({{categoryCounts.telcoYMedia}})</span>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="row mt-3">
+    <div class="col-12">
+        <div class="d-flex justify-content-between headersFilter" (click)="toggleKeywords()">
+            <h5 class="txt">Keywords</h5>
+            <span class="icon" [ngClass]="iconKeywords"></span>
+        </div>
+        <hr class="m-0">
+        <div class="contentKeywords mt-3" *ngIf="showKeywords">
+            <span class="badge rounded-pill bg-secondary text-light " *ngFor="let category of categories; let i = index"
+                [class.bg-primary]="i === selectedIndexKeyWords" (click)="setIndexKeyWords(i)">{{ category }}
+            </span>
+        </div>
+    </div>
+</div>
+<div class="row mt-3">
+    <div class="col-12">
+        <div class="d-flex justify-content-between headersFilter" (click)="toggleDate()">
+            <h5 class="txt">Date</h5>
+            <span class="icon" [ngClass]="iconDate"></span>
+        </div>
+        <hr class="m-0">
+        <div class="contentDate mt-3" *ngIf="showDate">
+            <div class="dateBox">
+                <input onclick="addClassRadio('5')" id="filterDD5" class="radioFilter" type="radio" name="dateFilter"
+                    value="all" checked="">
+                <span id="filterD5">
+                    All
+                </span>
+            </div>
+
+            <div class="dateBox">
+                <input onclick="addClassRadio('1')" id="filterDD1" class="radioFilter" type="radio" name="dateFilter"
+                    value="semana">
+                <span id="filterD1">
+                    This week
+                </span>
+            </div>
+
+            <div class="dateBox">
+                <input onclick="addClassRadio('2')" id="filterDD2" class="radioFilter" type="radio" name="dateFilter"
+                    value="mes">
+                <span id="filterD2">
+                    This month
+                </span>
+            </div>
+
+            <div class="dateBox">
+                <input onclick="addClassRadio('3')" id="filterDD3" class="radioFilter" type="radio" name="dateFilter"
+                    value="anio">
+                <span id="filterD3" class="colorBlue">
+                    This year
+                </span>
+            </div>
+
+            <div class="dateBox">
+                <input onclick="addClassRadio('4')" id="filterDD4" class="radioFilter" type="radio" name="dateFilter"
+                    value="custom">
+                <span id="filterD4">
+                    Custom date
+                </span>
+            </div>
+        </div>
+    </div>
+</div>
+
+

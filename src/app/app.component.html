@@ -1,0 +1,18 @@
+<div class="container">
+  <div class="row my-3">
+    <div class="col-12">
+      <app-change-view class="d-flex justify-content-end"></app-change-view>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-12 col-md-3" [ngClass]="{'d-none': !hideLeftContent}">
+      <app-blog-content-left></app-blog-content-left>
+    </div>
+    <div class="" [ngClass]="{'col-md-9': !hideLeftContent, 'col-md-6': hideLeftContent}">
+      <app-blog-content></app-blog-content>
+    </div>
+    <div class="col-12 col-md-3">
+      <app-blog-content-right></app-blog-content-right>
+    </div>
+  </div>
+</div>

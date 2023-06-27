@@ -1,0 +1,59 @@
+<p class="titleBlogHeader my-3">Feature</p>
+<div class="eventBlog col-md-12 col-xs-12">
+    <div class="row">
+        <div *ngIf="contentFeature.length; else noData">
+            <div *ngFor="let blog of contentFeature; let isLast=last">
+
+                <div class="contentBlogs col-md-12 col-xs-12">
+                    <a [href]="blog.link" class="link">
+                        <h4 class="title">
+                            {{blog.titulo}}
+                        </h4>
+                    </a>
+                    <div class="date">
+                        <small>
+                            <i class="icon-calendar"></i>
+                            {{blog.date | date:'dd/MM/yyyy'}}
+                        </small>
+                    </div>
+                </div>
+                <hr *ngIf="!isLast">
+            </div>
+        </div>
+    </div>
+
+    <ng-template #noData>
+        <div>No hay datos</div>
+    </ng-template>
+</div>
+<br>
+<p class="titleBlogHeader my-3">Most View</p>
+<div class="eventBlog col-md-12 col-xs-12">
+    <div class="row">
+        <div *ngIf="contentMostView.length; else noData">
+            <div *ngFor="let blog of contentMostView; let isLast=last">
+
+                <div class="contentBlogs col-md-12 col-xs-12">
+                    <a [href]="blog.link" class="link">
+                        <h4 class="title">
+                            {{blog.titulo}}
+                        </h4>
+                    </a>
+                    <div class="date">
+                        <small>
+                            <i class="icon-calendar"></i>
+                            {{blog.date | date:'dd/MM/yyyy'}}
+                        </small>
+                    </div>
+                </div>
+                <hr *ngIf="!isLast">
+            </div>
+        </div>
+    </div>
+
+    <ng-template #noData>
+        <div>No hay datos</div>
+    </ng-template>
+</div>
+
+

@@ -1,0 +1,5 @@
+<div class="d-flex justify-content-end">
+  <div class="m-1 pointer" *ngFor="let state of states; index as i" (click)="selectState(i)" [ngClass]="{'selected': i === selectedState}">
+    <img [src]="state" class="svg-icon" />
+  </div>
+</div>

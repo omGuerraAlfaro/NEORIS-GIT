@@ -1,0 +1,35 @@
+.titleBlogHeader {
+    font-weight: bold;
+    margin: 0;
+    font-size: 18px;
+    border-left: 4px solid #1b69d7;
+    padding-left: 12px;
+}
+
+
+.eventBlog.col-xs-12.col-md-12 {
+    padding-bottom: 24px;
+    margin-bottom: 24px;
+    border-bottom: 1px solid #d1d3d4;
+    padding-right: 0px;
+    margin-right: 15px;
+}
+
+
+.eventBlog .title {
+    margin: 0px !important;
+    font-weight: bold;
+    font-style: normal;
+    font-stretch: normal;
+    line-height: 1.5;
+    letter-spacing: normal;
+    color: #000000;
+    font-size: .8rem;
+    text-align: left;
+    text-decoration: none;
+}
+
+.contentBlogs a{
+    text-decoration: none;
+    color: #000000;
+}

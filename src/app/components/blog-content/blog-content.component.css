@@ -1,0 +1,77 @@
+.title {
+    margin-top: 10px;
+    font-weight: bold;
+    color: black;
+    font-size: 1.5rem;
+    font-weight: bold;
+    font-style: normal;
+    font-stretch: normal;
+    line-height: 1.25;
+    letter-spacing: normal;
+    color: #000000;
+}
+
+.date {
+    font-weight: normal;
+    font-style: normal;
+    font-stretch: normal;
+    font-size: 1rem;
+    line-height: 1.14;
+    letter-spacing: normal;
+    color: #5f6569;
+    text-transform: capitalize;
+}
+
+.abstract {
+    margin: 0px !important;
+    font-weight: normal;
+    font-style: normal;
+    font-stretch: normal;
+    line-height: 1.5;
+    letter-spacing: normal;
+    color: #000000;
+    font-size: 1rem;
+    text-align: left;
+    word-wrap: break-word;
+    white-space: pre-line;
+}
+
+
+
+/* .imageBlogs {
+    vertical-align: middle;
+    border-style: none;
+    width: 100%;
+    height: auto;
+} */
+
+.imageBlogs img {
+    width: 100%;
+    height: 270px;
+    object-fit: cover;
+    object-position: center top;
+    overflow: hidden;
+}
+
+.card2 {
+    width: 24rem;
+}
+
+.iconLocation {
+    font-size: 22px;
+}
+
+.readMore {
+    text-align: right;
+    font-weight: bold;
+    color: black;
+    margin-bottom: 20px;
+}
+
+.readMore a {
+    color: black;
+}
+
+.readMore a i {
+    color: black;
+}

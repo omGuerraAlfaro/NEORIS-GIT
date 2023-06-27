@@ -1,0 +1,46 @@
+<div [style.display]="contentBlog.length ? 'block' : 'none'">
+    <div class="row">
+        <div *ngFor="let blog of contentBlog | paginate: { itemsPerPage: 6, currentPage: p}"
+            [ngClass]="{'col-md-6': !changeSizeContent2}" style="width: 100%;">
+            <div [ngClass]="{'card card2': !showCardContent}" style="width: 100%;">
+                <div class="imageBlogs">
+                    <img [src]="blog.image.link.href" [ngClass]="{'card-img-top': !showCardContent}">
+                </div>
+
+                <div class="contentBlogs my-3">
+                    <h4 class="title" [ngClass]="{'card-title': !showCardContent}">
+                        {{blog.titulo | truncate:40:true:'...'}}
+                    </h4>
+
+                    <div class="date">
+                        <small>
+                            <i class="icon-calendar"></i>
+                            {{blog.date | date:'dd/MM/yyyy'}}
+                        </small>
+                    </div>
+
+                    <span class="abstract" [ngClass]="{'card-text': !showCardContent}">
+                        {{blog.descripcion | truncate:80:true:'...'}}
+                    </span>
+
+                    <div class="my-3" style="text-align: right;">
+                        <span style="cursor: pointer;">
+                            <a class="readMore" (click)="updateViewCount(blog.id, blog.viewCount)">Read more
+                                <span class="icon icon-arrow-right icon-monospaced"></span>
+                            </a>
+                        </span>
+                    </div>
+
+                    <hr [ngClass]="{'d-none': !showCardContent}">
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="text-center">
+        <hr [ngClass]="{'d-none': showCardContent}">
+        <pagination-controls (pageChange)="p = $event"></pagination-controls>
+    </div>
+</div>
+<div [style.display]="!contentBlog.length ? 'block' : 'none'">
+    <div class="text-center">-------------------------No hay datos-------------------------<div>
+</div>
