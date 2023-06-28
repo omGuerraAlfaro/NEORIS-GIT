@@ -27,12 +27,17 @@ export class BlogContentRightComponent implements OnInit {
       })
     }).subscribe({
       next: (data: any) => {
-          const sortedBlogs = data.items.sort((a: any, b: any) => b.viewCount - a.viewCount);
-          this.contentMostView = sortedBlogs.slice(0, 4);
-          console.log(sortedBlogs);
+        const sortedBlogs = data.items.sort((a: any, b: any) => b.viewCount - a.viewCount);
+        this.contentMostView = sortedBlogs.slice(0, 4);
+
+        // Filter out the featured blogs
+        this.contentFeature = data.items.filter((blog: any) => blog.destacado.key === 'si');
+
+        console.log(sortedBlogs);
       },
       error: (err) => { console.error(err); }
     });
   }
+
 
 }
