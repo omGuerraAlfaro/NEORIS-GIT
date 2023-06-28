@@ -10,6 +10,8 @@ import { BlogService } from 'src/app/services/blog-services.service';
 })
 export class BlogContentLeftComponent implements OnInit {
 
+  startDate?: any;
+  endDate?: any;
 
   filteredBlogs: any[] = [];
   contentBlog: any[] = [];
@@ -33,18 +35,18 @@ export class BlogContentLeftComponent implements OnInit {
   };
 
   keywords: any = {
-    'Analytics': false,
-    'Big data': false,
-    'Consumer': false,
-    'Digital': false,
-    'Energy': false,
-    'Financial': false,
-    'Innovation': false,
-    'Leadership': false,
-    'Telecommunications': false,
-    'Tranformation': false,
-    'UX': false,
-    'Web': false,
+    'analytics': false,
+    'bigData': false,
+    'consumer': false,
+    'digital': false,
+    'energy': false,
+    'financial': false,
+    'innovation': false,
+    'leadership': false,
+    'telecommunications': false,
+    'transformation': false,
+    'uX': false,
+    'web': false,
   }
   constructor(private blogService: BlogService) { }
 
@@ -86,7 +88,6 @@ export class BlogContentLeftComponent implements OnInit {
     } else {
       this.filteredBlogs = this.contentBlog.filter(blog => selectedCategories.includes(blog.categoria.key));
     }
-
     this.blogService.updateFilteredBlogs(this.filteredBlogs);
   }
 
@@ -97,7 +98,6 @@ export class BlogContentLeftComponent implements OnInit {
     this.keywords[keyword] = isChecked;
     this.updateFilteredBlogsKeywords();
   }
-  
 
   updateFilteredBlogsKeywords(): void {
     let selectedKeywords = Object.keys(this.keywords).filter(keyword => this.keywords[keyword]);
@@ -106,12 +106,15 @@ export class BlogContentLeftComponent implements OnInit {
       this.filteredBlogs = [...this.contentBlog];
     } else {
       this.filteredBlogs = this.contentBlog.filter(blog => {
-        console.log('Blog keyword:', blog.keyWords.key);
-        console.log('Selected keywords:', selectedKeywords);
-        return selectedKeywords.includes(blog.keyWords.key);
+        if (blog.keyWords && typeof blog.keyWords.key !== 'undefined') {
+          console.log('Blog keyword:', blog.keyWords.key);
+          console.log('Selected keywords:', selectedKeywords);
+          return selectedKeywords.includes(blog.keyWords.key);
+        }
+        return false;
       });
-    }
 
+    }
     this.blogService.updateFilteredBlogs(this.filteredBlogs);
   }
 
@@ -147,5 +150,52 @@ export class BlogContentLeftComponent implements OnInit {
   get iconDate() {
     return this.showDate ? 'icon-minus' : 'icon-plus';
   }
+
+
+
+  //FECHAS
+  filterByDate(filter: string): void {
+    let start: Date = new Date(0); // La fecha más antigua posible
+    let end: Date = new Date(); // La fecha actual
+    const today = new Date();
+
+    switch (filter) {
+      case 'semana':
+        start = new Date();
+        start.setDate(today.getDate() - 7);
+        break;
+      case 'mes':
+        start = new Date();
+        start.setMonth(today.getMonth() - 1);
+        break;
+      case 'anio':
+        start = new Date();
+        start.setFullYear(today.getFullYear() - 1);
+        break;
+      case 'custom':
+        // Aquí tendrías que obtener las fechas de tus inputs
+        // Podría ser algo así:
+        // start = new Date(this.fDesde);
+        // end = new Date(this.fHasta);
+        break;
+      default: // 'all'
+        start = new Date(0);
+        end = new Date();
+        break;
+    }
+
+    this.filteredBlogs = this.contentBlog.filter(blog => {
+      const blogDate = new Date(blog.date);
+      return blogDate >= start && blogDate <= end;
+    });
+
+    this.blogService.updateFilteredBlogs(this.filteredBlogs);
+  }
+
+
+
+
+
+
 
 }

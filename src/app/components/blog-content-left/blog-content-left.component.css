@@ -33,3 +33,37 @@
     position: relative;
     margin-right: 3px!important;
 }
+
+.badge-custom {
+    background-color: #6c757d !important; /* Gris oscuro por defecto */
+    color: #ffffff !important; /* Letras blancas por defecto */
+}
+
+.badge-custom:hover {
+    background-color: #0093c9 !important; /* Azul al hacer hover */
+    color: #ffffff !important; /* Letras blancas al hacer hover */
+}
+
+.checkboxFilter:checked + .badge-custom {
+    background-color: #0093c9 !important; /* Azul cuando está seleccionado */
+    color: #ffffff !important; /* Letras blancas cuando está seleccionado */
+}
+
+
+
+/* animación */
+.contentCategories,
+.contentKeywords,
+.contentDate {
+    transition: max-height 1s ease-in-out, opacity 1s ease-in-out;
+    max-height: 0;
+    opacity: 0;
+    overflow: hidden;
+}
+
+.contentCategories.show,
+.contentKeywords.show,
+.contentDate.show {
+    max-height: 1000px;  /* Ajustar este valor según las necesidades */
+    opacity: 1;
+}

@@ -5,7 +5,7 @@
             <span class="icon" [ngClass]="iconCategories"></span>
         </div>
         <hr class="m-0">
-        <div class="contentCategories mt-3" *ngIf="showCategories">
+        <div class="contentCategories mt-3" [class.show]="showCategories">
             <div class="categoryBox my-1">
                 <input class="checkboxFilter" type="checkbox" name="Digital Transformation"
                     value="Digital Transformation" (change)="onCheckboxChange('digitalTransformation', $event)">
@@ -39,6 +39,7 @@
         </div>
     </div>
 </div>
+
 <div class="row mt-3">
     <div class="col-12">
         <div class="d-flex justify-content-between headersFilter" (click)="toggleKeywords()">
@@ -46,20 +47,58 @@
             <span class="icon" [ngClass]="iconKeywords"></span>
         </div>
         <hr class="m-0">
-        <div class="contentKeywords mt-3" *ngIf="showKeywords">
-            <label class="badge rounded-pill bg-secondary text-light">
-                <input class="checkboxFilter" type="checkbox" id="financial" style="display:none"
-                    (change)="onKeywordClick('financial', $event)">
-                Financial
-            </label>
-            <label class="badge rounded-pill bg-secondary text-light">
-                <input class="checkboxFilter" type="checkbox" id="analytics" style="display:none"
-                    (change)="onKeywordClick('analytics', $event)">
-                Analytics
-            </label>
+        <div class="contentKeywords mt-3" [class.show]="showKeywords">
+            <input class="checkboxFilter" type="checkbox" id="financial" style="display:none"
+                (change)="onKeywordClick('financial', $event)">
+            <label for="financial" class="badge rounded-pill badge-custom">Financial</label>
+
+            <input class="checkboxFilter" type="checkbox" id="analytics" style="display:none"
+                (change)="onKeywordClick('analytics', $event)">
+            <label for="analytics" class="badge rounded-pill badge-custom">Analytics</label>
+
+            <input class="checkboxFilter" type="checkbox" id="bigData" style="display:none"
+                (change)="onKeywordClick('bigData', $event)">
+            <label for="bigData" class="badge rounded-pill badge-custom">Big data</label>
+
+            <input class="checkboxFilter" type="checkbox" id="consumer" style="display:none"
+                (change)="onKeywordClick('consumer', $event)">
+            <label for="consumer" class="badge rounded-pill badge-custom">Consumer</label>
+
+            <input class="checkboxFilter" type="checkbox" id="digital" style="display:none"
+                (change)="onKeywordClick('digital', $event)">
+            <label for="digital" class="badge rounded-pill badge-custom">Digital</label>
+
+            <input class="checkboxFilter" type="checkbox" id="energy" style="display:none"
+                (change)="onKeywordClick('energy', $event)">
+            <label for="energy" class="badge rounded-pill badge-custom">Energy</label>
+
+            <input class="checkboxFilter" type="checkbox" id="innovation" style="display:none"
+                (change)="onKeywordClick('innovation', $event)">
+            <label for="innovation" class="badge rounded-pill badge-custom">Innovation</label>
+
+            <input class="checkboxFilter" type="checkbox" id="leadership" style="display:none"
+                (change)="onKeywordClick('leadership', $event)">
+            <label for="leadership" class="badge rounded-pill badge-custom">Leadership</label>
+
+            <input class="checkboxFilter" type="checkbox" id="telecommunications" style="display:none"
+                (change)="onKeywordClick('telecommunications', $event)">
+            <label for="telecommunications" class="badge rounded-pill badge-custom">Telecommunications</label>
+
+            <input class="checkboxFilter" type="checkbox" id="transformation" style="display:none"
+                (change)="onKeywordClick('transformation', $event)">
+            <label for="transformation" class="badge rounded-pill badge-custom">Transformation</label>
+
+            <input class="checkboxFilter" type="checkbox" id="uX" style="display:none"
+                (change)="onKeywordClick('uX', $event)">
+            <label for="uX" class="badge rounded-pill badge-custom">UX</label>
+
+            <input class="checkboxFilter" type="checkbox" id="web" style="display:none"
+                (change)="onKeywordClick('web', $event)">
+            <label for="web" class="badge rounded-pill badge-custom">Web</label>
         </div>
     </div>
 </div>
+
 
 <div class="row mt-3">
     <div class="col-12">
@@ -68,45 +107,46 @@
             <span class="icon" [ngClass]="iconDate"></span>
         </div>
         <hr class="m-0">
-        <div class="contentDate mt-3" *ngIf="showDate">
+        <div class="contentDate mt-3" [class.show]="showDate">
             <div class="dateBox">
-                <input onclick="addClassRadio('5')" id="filterDD5" class="radioFilter" type="radio" name="dateFilter"
-                    value="all" checked="">
-                <span id="filterD5">
-                    All
-                </span>
+                <input id="filterDD5" class="radioFilter" type="radio" name="dateFilter" value="all"
+                    (change)="filterByDate('all')" checked>
+                <span id="filterD5">All</span>
             </div>
 
             <div class="dateBox">
-                <input onclick="addClassRadio('1')" id="filterDD1" class="radioFilter" type="radio" name="dateFilter"
-                    value="semana">
-                <span id="filterD1">
-                    This week
-                </span>
+                <input id="filterDD1" class="radioFilter" type="radio" name="dateFilter" value="semana"
+                    (change)="filterByDate('semana')">
+                <span id="filterD1">This week</span>
             </div>
 
             <div class="dateBox">
-                <input onclick="addClassRadio('2')" id="filterDD2" class="radioFilter" type="radio" name="dateFilter"
-                    value="mes">
-                <span id="filterD2">
-                    This month
-                </span>
+                <input id="filterDD2" class="radioFilter" type="radio" name="dateFilter" value="mes"
+                    (change)="filterByDate('mes')">
+                <span id="filterD2">This month</span>
             </div>
 
             <div class="dateBox">
-                <input onclick="addClassRadio('3')" id="filterDD3" class="radioFilter" type="radio" name="dateFilter"
-                    value="anio">
-                <span id="filterD3" class="colorBlue">
-                    This year
-                </span>
+                <input id="filterDD3" class="radioFilter" type="radio" name="dateFilter" value="anio"
+                    (change)="filterByDate('anio')">
+                <span id="filterD3">This year</span>
             </div>
 
             <div class="dateBox">
-                <input onclick="addClassRadio('4')" id="filterDD4" class="radioFilter" type="radio" name="dateFilter"
-                    value="custom">
-                <span id="filterD4">
-                    Custom date
-                </span>
+                <input id="filterDD4" class="radioFilter" type="radio" name="dateFilter" value="custom"
+                    (change)="filterByDate('custom')">
+                <span id="filterD4">Custom date</span>
+
+                <div id="dataFilter" style="display: block;">
+                    <input placeholder="Since" type="date" [(ngModel)]="startDate" class="dateControl">
+                    <span id="iconDesde" class="icon-calendar icon-monospaced iconNeoris" style="width: 1rem;"
+                        aria-live="assertive" aria-label=""></span>
+                    <input placeholder="Until" type="date" [(ngModel)]="endDate" class="dateControl">
+                    <span id="iconHasta" class="icon-calendar icon-monospaced iconNeoris" style="width: 1rem;"
+                        aria-live="assertive" aria-label=""></span>
+                    <input type="hidden" id="dateInicio">
+                    <input type="hidden" id="dateFin">
+                </div>
             </div>
         </div>
     </div>
