@@ -111,43 +111,49 @@
             <div class="dateBox">
                 <input id="filterDD5" class="radioFilter" type="radio" name="dateFilter" value="all"
                     (change)="filterByDate('all')" checked>
-                <span id="filterD5">All</span>
+                <span id="filterD5"> All</span>
             </div>
 
             <div class="dateBox">
                 <input id="filterDD1" class="radioFilter" type="radio" name="dateFilter" value="semana"
                     (change)="filterByDate('semana')">
-                <span id="filterD1">This week</span>
+                <span id="filterD1"> This week</span>
             </div>
 
             <div class="dateBox">
                 <input id="filterDD2" class="radioFilter" type="radio" name="dateFilter" value="mes"
                     (change)="filterByDate('mes')">
-                <span id="filterD2">This month</span>
+                <span id="filterD2"> This month</span>
             </div>
 
             <div class="dateBox">
                 <input id="filterDD3" class="radioFilter" type="radio" name="dateFilter" value="anio"
                     (change)="filterByDate('anio')">
-                <span id="filterD3">This year</span>
+                <span id="filterD3"> This year</span>
             </div>
 
             <div class="dateBox">
                 <input id="filterDD4" class="radioFilter" type="radio" name="dateFilter" value="custom"
                     (change)="filterByDate('custom')">
-                <span id="filterD4">Custom date</span>
+                <span id="filterD4"> Custom date</span>
+            </div>
 
-                <div id="dataFilter" style="display: block;">
-                    <input placeholder="Since" type="date" [(ngModel)]="startDate" class="dateControl">
-                    <span id="iconDesde" class="icon-calendar icon-monospaced iconNeoris" style="width: 1rem;"
-                        aria-live="assertive" aria-label=""></span>
-                    <input placeholder="Until" type="date" [(ngModel)]="endDate" class="dateControl">
-                    <span id="iconHasta" class="icon-calendar icon-monospaced iconNeoris" style="width: 1rem;"
-                        aria-live="assertive" aria-label=""></span>
-                    <input type="hidden" id="dateInicio">
-                    <input type="hidden" id="dateFin">
+            <div class="row mt-1" [ngClass]="{'show': isCustomSelected, 'hide': !isCustomSelected}">
+                <div class="col-6">
+                    <small>Since</small>
+                    <input placeholder="Since" type="date" [(ngModel)]="startDate" class="dateControl"
+                        style="width: 100%;">
+                </div>
+                <div class="col-6">
+                    <small>Until</small>
+                    <input placeholder="Until" type="date" [(ngModel)]="endDate" class="dateControl"
+                        style="width: 100%;">
                 </div>
             </div>
+            <div class="row" [ngClass]="{'show': isCustomSelected, 'hide': !isCustomSelected}">
+                <button class="mt-1 btn btn-secondary btn-sm" (click)="filterByDate('custom')">Buscar</button>
+            </div>
+
         </div>
     </div>
 </div>

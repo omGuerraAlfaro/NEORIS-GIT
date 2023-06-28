@@ -91,7 +91,10 @@ export class BlogContentComponent {
         headers: {
           'x-csrf-token': this.token
         }
-      })
+      }).subscribe({
+        next: data => console.log(data),
+        error: error => console.error('There was an error!', error)
+      });
     } else {
       console.error('Token is not defined');
     }

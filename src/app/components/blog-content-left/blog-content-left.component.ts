@@ -9,9 +9,9 @@ import { BlogService } from 'src/app/services/blog-services.service';
   styleUrls: ['./blog-content-left.component.css']
 })
 export class BlogContentLeftComponent implements OnInit {
-
-  startDate?: any;
-  endDate?: any;
+  public isCustomSelected: boolean = false;
+  startDate?: Date;
+  endDate?: Date;
 
   filteredBlogs: any[] = [];
   contentBlog: any[] = [];
@@ -153,48 +153,64 @@ export class BlogContentLeftComponent implements OnInit {
 
 
 
-  //FECHAS
   filterByDate(filter: string): void {
-    let start: Date = new Date(0); // La fecha más antigua posible
-    let end: Date = new Date(); // La fecha actual
+    this.isCustomSelected = filter === 'custom';
+    let start: Date;
+    let end: Date;
     const today = new Date();
 
     switch (filter) {
       case 'semana':
         start = new Date();
-        start.setDate(today.getDate() - 7);
-        break;
-      case 'mes':
-        start = new Date();
-        start.setMonth(today.getMonth() - 1);
-        break;
-      case 'anio':
-        start = new Date();
-        start.setFullYear(today.getFullYear() - 1);
-        break;
-      case 'custom':
-        // Aquí tendrías que obtener las fechas de tus inputs
-        // Podría ser algo así:
-        // start = new Date(this.fDesde);
-        // end = new Date(this.fHasta);
-        break;
-      default: // 'all'
-        start = new Date(0);
+        start.setDate(today.getDate() - today.getDay() + (today.getDay() === 0 ? -6 : 1));
         end = new Date();
         break;
+      case 'mes':
+        start = new Date(today.getFullYear(), today.getMonth(), 1);
+        end = new Date(today.getFullYear(), today.getMonth() + 1, 0);
+        break;
+      case 'anio':
+        start = new Date(today.getFullYear(), 0, 1);
+        end = new Date(today.getFullYear() + 1, 0, 0);
+        break;
+      case 'custom':
+        if (!this.startDate || !this.endDate) {
+          return;
+        }
+
+        start = new Date(this.startDate);
+        end = new Date(this.endDate);
+        start = new Date(Date.UTC(start.getFullYear(), start.getMonth(), start.getDate(), 0, 0, 0, 0));
+        end = new Date(Date.UTC(end.getFullYear(), end.getMonth(), end.getDate(), 23, 59, 59, 999));
+        break;
+
+
+      default: // 'all'
+        this.filteredBlogs = this.contentBlog;
+        this.blogService.updateFilteredBlogs(this.filteredBlogs);
+        return;
     }
 
     this.filteredBlogs = this.contentBlog.filter(blog => {
-      const blogDate = new Date(blog.date);
-      return blogDate >= start && blogDate <= end;
+      const blogDate = new Date(blog.dateCreated);
+      const blogYear = blogDate.getUTCFullYear();
+      const blogMonth = blogDate.getUTCMonth();
+      const blogDay = blogDate.getUTCDate();
+
+      const startYear = start.getUTCFullYear();
+      const startMonth = start.getUTCMonth();
+      const startDay = start.getUTCDate();
+
+      const endYear = end.getUTCFullYear();
+      const endMonth = end.getUTCMonth();
+      const endDay = end.getUTCDate();
+
+      return (blogYear > startYear || (blogYear === startYear && blogMonth > startMonth) || (blogYear === startYear && blogMonth === startMonth && blogDay >= startDay))
+        && (blogYear < endYear || (blogYear === endYear && blogMonth < endMonth) || (blogYear === endYear && blogMonth === endMonth && blogDay <= endDay));
     });
 
     this.blogService.updateFilteredBlogs(this.filteredBlogs);
   }
-
-
-
-
 
 
 

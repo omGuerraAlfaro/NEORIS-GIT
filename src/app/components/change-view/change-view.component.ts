@@ -21,12 +21,10 @@ export class ChangeViewComponent implements OnInit {
   ngOnInit() {
     this.viewStateService.state$.subscribe(state => {
       this.selectedState = state;
-      // console.log(`State has been changed to: ${state}`);
     });
   }
 
   selectState(state: number) {
     this.viewStateService.changeState(state);
-    // console.log(`State selected: ${state}`);
   }
 }

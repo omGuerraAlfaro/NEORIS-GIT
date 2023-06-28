@@ -1,77 +1,38 @@
-import { HttpClient } from '@angular/common/http';
-import { Component } from '@angular/core';
-import { Subscription } from 'rxjs';
-import { BlogService } from 'src/app/services/blog-services.service';
-
+import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { Component, OnInit } from '@angular/core';
+declare const Liferay: any;
 @Component({
   selector: 'app-blog-content-right',
   templateUrl: './blog-content-right.component.html',
   styleUrls: ['./blog-content-right.component.css']
 })
-export class BlogContentRightComponent {
+export class BlogContentRightComponent implements OnInit {
+  private readonly LIFERAY_API = 'http://192.168.1.32:8080/o/c/blogs/';
+  token?: string;
   contentMostView: any[] = [];
   contentFeature: any[] = [];
 
-  constructor(private blogService: BlogService, private http: HttpClient) { }
-  private blogsSubscription: Subscription | null = null;
+  constructor(private http: HttpClient) { }
 
   ngOnInit(): void {
-    this.blogsSubscription = this.blogService.blogs$.subscribe(blogs => {
-      this.contentMostView = blogs.slice(0, 4);
-      this.contentFeature = blogs.slice(0, 4);
-      console.log(blogs);
+    this.token = Liferay.authToken;
+    if (!this.token) {
+      console.error('Token is not defined');
+      return;
+    }
+
+    this.http.get<any>(this.LIFERAY_API, {
+      headers: new HttpHeaders({
+        'x-csrf-token': this.token
+      })
+    }).subscribe({
+      next: (data: any) => {
+          const sortedBlogs = data.items.sort((a: any, b: any) => b.viewCount - a.viewCount);
+          this.contentMostView = sortedBlogs.slice(0, 4);
+          console.log(sortedBlogs);
+      },
+      error: (err) => { console.error(err); }
     });
   }
 
-  ngOnDestroy(): void {
-    if (this.blogsSubscription) {
-      this.blogsSubscription.unsubscribe();
-    }
-    
-  }
-  
 }
-
-
-
-
-// contentMostView = [
-//   {
-//     titulo: 'Título de Prueba NEORIS SABE COMO AYUDAR A LAS EMPRESAS A TRANSFORMARSE DIGITALMENTE',
-//     fecha: '08/07/2021',
-//     texto: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Ea quod adipisci quam cumque placeat atque corporis, eum in impedit delectus, enim culpa, voluptate ratione! Officia optio recusandae ea quia officiis.',
-//     link: 'http://link-del-blog-1.com'
-//   },
-//   {
-//     titulo: 'Título de Prueba NEORIS SABE COMO AYUDAR A LAS EMPRESAS A TRANSFORMARSE DIGITALMENTE',
-//     fecha: '08/07/2021',
-//     texto: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Ea quod adipisci quam cumque placeat atque corporis, eum in impedit delectus, enim culpa, voluptate ratione! Officia optio recusandae ea quia officiis.',
-//     link: 'http://link-del-blog-1.com'
-//   },
-//   {
-//     titulo: 'Título de Prueba NEORIS SABE COMO AYUDAR A LAS EMPRESAS A TRANSFORMARSE DIGITALMENTE',
-//     fecha: '08/07/2021',
-//     texto: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Ea quod adipisci quam cumque placeat atque corporis, eum in impedit delectus, enim culpa, voluptate ratione! Officia optio recusandae ea quia officiis.',
-//     link: 'http://link-del-blog-1.com'
-//   }
-// ];
-// contentFeature = [
-//   {
-//     titulo: 'Título de Prueba NEORIS SABE COMO AYUDAR A LAS EMPRESAS A TRANSFORMARSE DIGITALMENTE',
-//     fecha: '08/07/2021',
-//     texto: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Ea quod adipisci quam cumque placeat atque corporis, eum in impedit delectus, enim culpa, voluptate ratione! Officia optio recusandae ea quia officiis.',
-//     link: 'http://link-del-blog-1.com'
-//   },
-//   {
-//     titulo: 'Título de Prueba NEORIS SABE COMO AYUDAR A LAS EMPRESAS A TRANSFORMARSE DIGITALMENTE',
-//     fecha: '08/07/2021',
-//     texto: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Ea quod adipisci quam cumque placeat atque corporis, eum in impedit delectus, enim culpa, voluptate ratione! Officia optio recusandae ea quia officiis.',
-//     link: 'http://link-del-blog-1.com'
-//   },
-//   {
-//     titulo: 'Título de Prueba NEORIS SABE COMO AYUDAR A LAS EMPRESAS A TRANSFORMARSE DIGITALMENTE',
-//     fecha: '08/07/2021',
-//     texto: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Ea quod adipisci quam cumque placeat atque corporis, eum in impedit delectus, enim culpa, voluptate ratione! Officia optio recusandae ea quia officiis.',
-//     link: 'http://link-del-blog-1.com'
-//   }
-// ];
