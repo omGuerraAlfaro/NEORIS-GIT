@@ -47,12 +47,20 @@
         </div>
         <hr class="m-0">
         <div class="contentKeywords mt-3" *ngIf="showKeywords">
-            <span class="badge rounded-pill bg-secondary text-light " *ngFor="let category of categories; let i = index"
-                [class.bg-primary]="i === selectedIndexKeyWords" (click)="setIndexKeyWords(i)">{{ category }}
-            </span>
+            <label class="badge rounded-pill bg-secondary text-light">
+                <input class="checkboxFilter" type="checkbox" id="financial" style="display:none"
+                    (change)="onKeywordClick('financial', $event)">
+                Financial
+            </label>
+            <label class="badge rounded-pill bg-secondary text-light">
+                <input class="checkboxFilter" type="checkbox" id="analytics" style="display:none"
+                    (change)="onKeywordClick('analytics', $event)">
+                Analytics
+            </label>
         </div>
     </div>
 </div>
+
 <div class="row mt-3">
     <div class="col-12">
         <div class="d-flex justify-content-between headersFilter" (click)="toggleDate()">
@@ -103,5 +111,3 @@
         </div>
     </div>
 </div>
-
-

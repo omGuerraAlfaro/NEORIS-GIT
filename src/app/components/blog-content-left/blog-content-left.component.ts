@@ -10,8 +10,6 @@ import { BlogService } from 'src/app/services/blog-services.service';
 })
 export class BlogContentLeftComponent implements OnInit {
 
-  categories = ['Analytics', 'Big data', 'Consumer', 'Digital', 'Energy', 'Financial', 'Innovation', 'Leadership', 'Telecommunications', 'Tranformation', 'UX', 'Web'];
-  selectedIndexKeyWords: number | null = null;
 
   filteredBlogs: any[] = [];
   contentBlog: any[] = [];
@@ -33,6 +31,21 @@ export class BlogContentLeftComponent implements OnInit {
     'manufacturing': false,
     'telcoYMedia': false,
   };
+
+  keywords: any = {
+    'Analytics': false,
+    'Big data': false,
+    'Consumer': false,
+    'Digital': false,
+    'Energy': false,
+    'Financial': false,
+    'Innovation': false,
+    'Leadership': false,
+    'Telecommunications': false,
+    'Tranformation': false,
+    'UX': false,
+    'Web': false,
+  }
   constructor(private blogService: BlogService) { }
 
 
@@ -77,11 +90,34 @@ export class BlogContentLeftComponent implements OnInit {
     this.blogService.updateFilteredBlogs(this.filteredBlogs);
   }
 
+
+  onKeywordClick(keyword: string, event: Event): void {
+    console.log("Keyword click event triggered");
+    let isChecked = (event.target as HTMLInputElement).checked;
+    this.keywords[keyword] = isChecked;
+    this.updateFilteredBlogsKeywords();
+  }
+  
+
+  updateFilteredBlogsKeywords(): void {
+    let selectedKeywords = Object.keys(this.keywords).filter(keyword => this.keywords[keyword]);
+
+    if (selectedKeywords.length === 0) {
+      this.filteredBlogs = [...this.contentBlog];
+    } else {
+      this.filteredBlogs = this.contentBlog.filter(blog => {
+        console.log('Blog keyword:', blog.keyWords.key);
+        console.log('Selected keywords:', selectedKeywords);
+        return selectedKeywords.includes(blog.keyWords.key);
+      });
+    }
+
+    this.blogService.updateFilteredBlogs(this.filteredBlogs);
+  }
+
   /* ****************************************************************** */
 
-  setIndexKeyWords(index: number) {
-    this.selectedIndexKeyWords = index;
-  }
+
 
   //Animation
   showCategories: boolean = false;
