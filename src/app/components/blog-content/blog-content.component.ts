@@ -105,7 +105,7 @@ export class BlogContentComponent {
   goToBlogDetail(blog: any) {
     const blogJSON = JSON.stringify(blog);
     localStorage.setItem('selectedBlog', blogJSON);
-    const url = '/web/neoris/detail_blog';
+    const url = '/web/neoris/blog-detail';
     location.href = url;
   }
 
