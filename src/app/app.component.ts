@@ -31,7 +31,7 @@ export class AppComponent implements OnInit {
     }
     this.http.get<any>(this.LIFERAY_API, {
       headers: {
-        'x-csrf-token': this.token
+        'x-csrf-token': 'yBg8lEAO'
       }
     }).subscribe({
       next: (data: any) => {
