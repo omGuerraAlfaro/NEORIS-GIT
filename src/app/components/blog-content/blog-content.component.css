@@ -53,9 +53,38 @@
     overflow: hidden;
 }
 
+/* .card2 {
+    width: 24rem;
+    padding: 14px 16px 24px;
+    min-height: auto;
+} */
+.row {
+    display: flex;
+    flex-wrap: wrap;
+}
+
 .card2 {
     width: 24rem;
+    padding: 14px 16px 0px;
+    min-height: 300px; 
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
 }
+
+.card2 .contentBlogs {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 6; 
+    -webkit-box-orient: vertical;
+}
+
+.card2 .title {
+    height: 3em; /* Ajusta este valor según tus necesidades */
+    overflow: hidden;
+}
+
 
 .iconLocation {
     font-size: 22px;

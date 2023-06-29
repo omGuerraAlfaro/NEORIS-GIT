@@ -57,6 +57,7 @@ export class BlogContentComponent {
       }
       if (state === 3) {
         this.showCardContent = false;
+        this.changeSizeContent2 = true;
       }
     });
     /* ******************************************** */

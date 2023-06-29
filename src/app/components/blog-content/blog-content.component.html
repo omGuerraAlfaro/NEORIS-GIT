@@ -44,3 +44,45 @@
 <div [style.display]="!contentBlog.length ? 'block' : 'none'">
     <div class="text-center">-------------------------No hay datos-------------------------<div>
 </div>
+
+
+
+<!-- 
+import { Component } from '@angular/core';
+
+declare const Liferay: any;
+
+@Component({
+  selector: 'app-blog',
+  template: `
+    <div class="my-3" style="text-align: right;">
+      <span style="cursor: pointer;">
+        <a class="readMore" (click)="goToBlogDetail(blog.id)">Read more
+          <span class="icon icon-arrow-right icon-monospaced"></span>
+        </a>
+      </span>
+    </div>
+  `
+})
+export class BlogComponent {
+  blog: any; // Este es el blog que se está mostrando.
+
+  goToBlogDetail(id: string) {
+    // Aquí debes reemplazar '/blogs/' con la ruta a tu página de detalles de blogs en Liferay.
+    const url = Liferay.Util.addParams({ id }, '/blogs/');
+    location.href = url;
+  }
+} -->
+
+
+
+
+
+<!-- <#assign encodedBlog = request.getParameter("blog") />
+ -->
+<!-- <script>
+  var encodedBlog = "${encodedBlog}";
+  var blogString = decodeURIComponent(encodedBlog || '');
+  var blog = JSON.parse(blogString);
+
+</script> -->

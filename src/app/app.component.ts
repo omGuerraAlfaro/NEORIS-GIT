@@ -52,7 +52,7 @@ export class AppComponent implements OnInit {
         this.hideLeftContent = false;
       }
       if (state === 3) {
-        
+        this.hideLeftContent = false;        
       }
     });
   }
