@@ -5,7 +5,7 @@
             <div *ngFor="let blog of contentFeature; let isLast=last">
 
                 <div class="contentBlogs col-md-12 col-xs-12">
-                    <a [href]="blog.link" class="link">
+                    <a (click)="goToBlogDetail(blog)" class="link">
                         <h4 class="title">
                             {{blog.titulo}}
                         </h4>
@@ -34,7 +34,7 @@
             <div *ngFor="let blog of contentMostView; let isLast=last">
 
                 <div class="contentBlogs col-md-12 col-xs-12">
-                    <a [href]="blog.link" class="link">
+                    <a (click)="goToBlogDetail(blog)" class="link">
                         <h4 class="title">
                             {{blog.titulo}}
                         </h4>

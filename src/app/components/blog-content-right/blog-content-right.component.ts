@@ -38,5 +38,8 @@ export class BlogContentRightComponent implements OnInit {
     });
   }
 
-
+  goToBlogDetail(blog: any) {
+    const blogId = blog.id;
+    window.location.href = `/web/neoris/blog-detail?id=${blogId}`;
+  }
 }
