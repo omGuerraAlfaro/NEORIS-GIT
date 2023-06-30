@@ -39,25 +39,27 @@ export class BlogContentComponent {
       console.log(blogs);
     });
 
-
-
     //views
     this.viewStateService.state$.subscribe(state => {
       if (state === 0) {
         this.showCardContent = true;
         this.changeSizeContent2 = true;
+        this.changeSizeContent3 = true;
       }
       if (state === 1) {
         this.showCardContent = true;
         this.changeSizeContent2 = true;
+        this.changeSizeContent3 = true;
       }
       if (state === 2) {
         this.showCardContent = false;
         this.changeSizeContent2 = false;
+        this.changeSizeContent3 = true;
       }
       if (state === 3) {
         this.showCardContent = false;
         this.changeSizeContent2 = true;
+        this.changeSizeContent3 = false;
       }
     });
     /* ******************************************** */

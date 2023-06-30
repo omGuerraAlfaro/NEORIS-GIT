@@ -1,88 +1,51 @@
 <div [style.display]="contentBlog.length ? 'block' : 'none'">
-    <div class="row">
-        <div *ngFor="let blog of contentBlog | paginate: { itemsPerPage: 6, currentPage: p}"
-            [ngClass]="{'col-md-6': !changeSizeContent2}" style="width: 100%;">
-            <div [ngClass]="{'card card2': !showCardContent}" style="width: 100%;">
-                <div class="imageBlogs">
-                    <img [src]="blog.image.link.href" [ngClass]="{'card-img-top': !showCardContent}">
-                </div>
-
-                <div class="contentBlogs my-3">
-                    <h4 class="title" [ngClass]="{'card-title': !showCardContent}">
-                        {{blog.titulo | truncate:40:true:'...'}}
-                    </h4>
-
-                    <div class="date">
-                        <small>
-                            <i class="icon-calendar"></i>
-                            {{blog.date | date:'dd/MM/yyyy'}}
-                        </small>
-                    </div>
-
-                    <span class="abstract" [ngClass]="{'card-text': !showCardContent}">
-                        {{blog.descripcion | truncate:80:true:'...'}}
-                    </span>
-
-                    <div class="my-3" style="text-align: right;">
-                        <span style="cursor: pointer;">
-                            <a class="readMore" (click)="updateViewCount(blog.id, blog.viewCount); goToBlogDetail(blog)">Read more
-                                <span class="icon icon-arrow-right icon-monospaced"></span>
-                            </a>
-                        </span>
-                    </div>
-
-                    <hr [ngClass]="{'d-none': !showCardContent}">
-                </div>
-            </div>
+  <div class="row">
+    <div *ngFor="let blog of contentBlog | paginate: { itemsPerPage: 6, currentPage: p}"
+      [ngClass]="{'col-md-6': !changeSizeContent2}" style="width: 100%;">
+      <div [ngClass]="{'card card2': !showCardContent,
+                       'd-flex flex-row':!changeSizeContent3}" style="width: 100%;">
+        <div class="imageBlogs" [ngClass]="{'col-md-4': !changeSizeContent3}">
+          <img [src]="blog.image.link.href" [ngClass]="{'card-img-top': !showCardContent}">
         </div>
+
+
+        <div class="contentBlogs my-3"  [ngClass]="{'col-md-8': !changeSizeContent3}">
+          <h4 class="title" [ngClass]="{'card-title': !showCardContent}">
+            {{blog.titulo | truncate:40:true:'...'}}
+          </h4>
+
+          <div class="date">
+            <small>
+              <i class="icon-calendar"></i>
+              {{blog.date | date:'dd/MM/yyyy'}}
+            </small>
+          </div>
+
+          <span class="abstract" [ngClass]="{'card-text': !showCardContent}">
+            {{blog.descripcion | truncate:80:true:'...'}}
+          </span>
+
+          <div [ngClass]="{'d-block mt-3': !changeSizeContent3}">
+            <div class="my-3" style="text-align: right;" >
+              <span style="cursor: pointer;">
+                <a class="readMore" (click)="updateViewCount(blog.id, blog.viewCount); goToBlogDetail(blog)">Read more
+                  <span class="icon icon-arrow-right icon-monospaced"></span>
+                </a>
+              </span>
+            </div>
+          </div>
+
+          <hr [ngClass]="{'d-none': !showCardContent}">
+        </div>
+
+      </div>
     </div>
-    <div class="text-center">
-        <hr [ngClass]="{'d-none': showCardContent}">
-        <pagination-controls (pageChange)="p = $event"></pagination-controls>
-    </div>
+  </div>
+  <div class="text-center">
+    <hr [ngClass]="{'d-none': showCardContent}">
+    <pagination-controls (pageChange)="p = $event"></pagination-controls>
+  </div>
 </div>
 <div [style.display]="!contentBlog.length ? 'block' : 'none'">
-    <div class="text-center">-------------------------No hay datos-------------------------<div>
-</div>
-
-
-
-<!-- 
-import { Component } from '@angular/core';
-
-declare const Liferay: any;
-
-@Component({
-  selector: 'app-blog',
-  template: `
-    <div class="my-3" style="text-align: right;">
-      <span style="cursor: pointer;">
-        <a class="readMore" (click)="goToBlogDetail(blog.id)">Read more
-          <span class="icon icon-arrow-right icon-monospaced"></span>
-        </a>
-      </span>
+  <div class="text-center">-------------------------No hay datos-------------------------<div>
     </div>
-  `
-})
-export class BlogComponent {
-  blog: any; // Este es el blog que se está mostrando.
-
-  goToBlogDetail(id: string) {
-    // Aquí debes reemplazar '/blogs/' con la ruta a tu página de detalles de blogs en Liferay.
-    const url = Liferay.Util.addParams({ id }, '/blogs/');
-    location.href = url;
-  }
-} -->
-
-
-
-
-
-<!-- <#assign encodedBlog = request.getParameter("blog") />
- -->
-<!-- <script>
-  var encodedBlog = "${encodedBlog}";
-  var blogString = decodeURIComponent(encodedBlog || '');
-  var blog = JSON.parse(blogString);
-
-</script> -->
