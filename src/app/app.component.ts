@@ -7,7 +7,7 @@ import { ViewStateService } from './services/state-service.service';
 declare const Liferay: any;
 
 @Component({
-  selector: 'search-portlet-neoris',
+  selector: 'portlet-blog',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
 })
@@ -17,7 +17,7 @@ export class AppComponent implements OnInit {
   changeSizeContent = true;
   
 
-  title = 'search-portlet-neoris';
+  title = 'portlet-blog';
   token?: string;
   private readonly LIFERAY_API = 'http://192.168.1.32:8080/o/c/blogs/';
 

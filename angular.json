@@ -3,7 +3,7 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "search-portlet-neoris": {
+    "portlet-blog": {
       "projectType": "application",
       "schematics": {},
       "root": "",
@@ -13,7 +13,7 @@
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
-            "outputPath": "dist/search-portlet-neoris",
+            "outputPath": "dist/portlet-blog",
             "index": "src/index.html",
             "main": "src/main.ts",
             "polyfills": [
@@ -60,10 +60,10 @@
           "builder": "@angular-devkit/build-angular:dev-server",
           "configurations": {
             "production": {
-              "browserTarget": "search-portlet-neoris:build:production"
+              "browserTarget": "portlet-blog:build:production"
             },
             "development": {
-              "browserTarget": "search-portlet-neoris:build:development"
+              "browserTarget": "portlet-blog:build:development"
             }
           },
           "defaultConfiguration": "development"
@@ -71,7 +71,7 @@
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "search-portlet-neoris:build"
+            "browserTarget": "portlet-blog:build"
           }
         },
         "test": {
