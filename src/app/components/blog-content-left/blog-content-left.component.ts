@@ -93,7 +93,6 @@ export class BlogContentLeftComponent implements OnInit {
 
 
   onKeywordClick(keyword: string, event: Event): void {
-    console.log("Keyword click event triggered");
     let isChecked = (event.target as HTMLInputElement).checked;
     this.keywords[keyword] = isChecked;
     this.updateFilteredBlogsKeywords();
@@ -107,8 +106,6 @@ export class BlogContentLeftComponent implements OnInit {
     } else {
       this.filteredBlogs = this.contentBlog.filter(blog => {
         if (blog.keyWords && typeof blog.keyWords.key !== 'undefined') {
-          console.log('Blog keyword:', blog.keyWords.key);
-          console.log('Selected keywords:', selectedKeywords);
           return selectedKeywords.includes(blog.keyWords.key);
         }
         return false;

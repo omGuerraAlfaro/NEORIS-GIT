@@ -14,7 +14,7 @@ declare const Liferay: any;
 })
 export class BlogContentComponent {
   token?: string;
-  private readonly LIFERAY_API_PUT = 'http://192.168.1.32:8080/o/c/blogs/';
+  private readonly LIFERAY_API_PUT = '/o/c/blogs/';
   //views
   changeSizeContent2 = true;
   changeSizeContent3 = true;
@@ -31,12 +31,10 @@ export class BlogContentComponent {
   ngOnInit(): void {
     this.blogsSubscription = this.blogService.blogs$.subscribe(blogs => {
       this.contentBlog = blogs;
-      // console.log(blogs);
     });
 
     this.blogsSubscription = this.blogService.filteredBlogs$.subscribe(blogs => {
       this.contentBlog = blogs;
-      console.log(blogs);
     });
 
     //views
@@ -81,8 +79,6 @@ export class BlogContentComponent {
 
 
   updateViewCount(blogId: number, viewCount: number): void {
-    console.log('Blog ID:', blogId);
-    console.log('View Count:', viewCount);
 
     const url = this.LIFERAY_API_PUT + `${blogId}`;
 
