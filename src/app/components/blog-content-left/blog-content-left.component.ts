@@ -71,7 +71,6 @@ export class BlogContentLeftComponent implements OnInit {
           this.categoryCounts[categoryName]++;
         }
       }
-      console.log(this.categoryCounts);
     });
   }
 

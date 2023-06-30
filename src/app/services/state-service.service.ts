@@ -12,6 +12,5 @@ export class ViewStateService {
 
   changeState(state: number) {
     this.stateSource.next(state);
-    // console.log(`State changed to: ${state}`);
   }
 }

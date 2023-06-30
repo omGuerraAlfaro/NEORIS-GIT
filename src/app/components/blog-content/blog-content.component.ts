@@ -91,7 +91,6 @@ export class BlogContentComponent {
           'x-csrf-token': this.token
         }
       }).subscribe({
-        next: data => console.log(data),
         error: error => console.error('There was an error!', error)
       });
     } else {
