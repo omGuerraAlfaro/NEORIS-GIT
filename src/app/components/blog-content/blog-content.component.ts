@@ -101,27 +101,31 @@ export class BlogContentComponent {
     }
   }
 
-
   goToBlogDetail(blog: any) {
-    const blogJSON = JSON.stringify(blog);
-    localStorage.setItem('selectedBlog', blogJSON);
-    const url = '/web/neoris/blog-detail';
-    location.href = url;
+    const blogId = blog.id;
+    window.location.href = `/web/neoris/blog-detail?id=${blogId}`;
   }
+
+  // goToBlogDetail(blog: any) {
+  //   const blogJSON = JSON.stringify(blog);
+  //   localStorage.setItem('selectedBlog', blogJSON);
+  //   const url = '/web/neoris/blog-detail';
+  //   location.href = url;
+  // }
 
   // goToBlogDetail(blog: any) {
   //   Liferay.fire('blogSelected', blog);
   //   const url = '/web/neoris/detail_blog';
   //   location.href = url;
   // }
-  
+
   // goToBlogDetail(blog: any) {
   //   const blogString = JSON.stringify(blog);
   //   const encodedBlog = encodeURIComponent(blogString);  
   //   const url = Liferay.Util.addParams({ blog: encodedBlog }, '/web/neoris/detail_blog');
   //   location.href = url;
   // }
-  
+
 }
 
 
