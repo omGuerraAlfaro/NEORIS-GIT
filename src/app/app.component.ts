@@ -19,7 +19,7 @@ export class AppComponent implements OnInit {
 
   title = 'portlet-blog';
   token?: string;
-  private readonly LIFERAY_API = 'http://192.168.1.32:8080/o/c/blogs/';
+  private readonly LIFERAY_API = '/o/c/blogs/';
 
   constructor(private http: HttpClient, private blogService: BlogService, private viewStateService: ViewStateService) { }
 
